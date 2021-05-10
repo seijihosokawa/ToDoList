@@ -19,8 +19,14 @@ class Todo(db.Model):
         return '<Task %r>' % self.id
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    tasks = Todo.query.order_by(Todo.date_created).all()
+    return render_template('index.html', tasks=tasks)
+
+
+@app.route('/addTask', methods=['POST', 'GET'])
+def add():
     if request.method == 'POST':
         task_content = request.form['content']
         new_task = Todo(content=task_content)
@@ -31,12 +37,8 @@ def index():
             return redirect('/')
         except:
             return 'There was an error adding the task'
-
     else:
-        tasks = Todo.query.order_by(Todo.date_created).all()
-        return render_template('index.html', tasks=tasks)
-
-    return render_template('index.html')
+        return render_template('addTask.html')
 
 
 @app.route('/delete/<int:id>')

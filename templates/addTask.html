@@ -4,13 +4,14 @@
 {% endblock %}
 
 {% block body %}
-<div class="container"><center>
-  <h1>To Do List App</h1>
+<div class="container">
     <h2>Add Task</h2>
-    <form action="/" method="POST">
-        <input type="text" name="content" id="content">
-        <input type="submit" value="Add Task">
+    <form action="/addTask" method="POST">
+      <div class="mb-3">
+        <label class="form-label">Enter a Task:</label>
+        <input type="text" class="form-control" name="content" id="content" placeholder="Clean the dishes">
+      </div>
+      <button type="submit" class="btn btn-primary" value="Add Task">Submit</button>
     </form>
-    </center>
 </div>
 {% endblock %}
