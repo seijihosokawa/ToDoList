@@ -9,8 +9,8 @@
     <h4>There are no tasks.</h4>
     {% else %}
     {% for task in tasks %}
-    <div class="card border-primary mb-3" id="draggableDiv">
-            <div class="card-header" id="mydivheader" style="cursor: move;z-index: 2;">{{ task.date_created.date() }}</div>
+    <div class="card border-primary mb-3 {{ loop.index }}" style="position: fixed;max-width: 18rem;z-index: 1;">
+        <div class="card-header">{{ task.date_created.date() }}</div>
       <div class="card-body text-primary">
         <h5 class="card-title">{{ task.content }}</h5>
         <p class="card-text">

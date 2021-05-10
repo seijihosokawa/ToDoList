@@ -2,11 +2,10 @@
 /*
  * Styling for nav bar
  */
-.nav-link:hover{
+a.nav-link:hover{
     color:white !important;
 }
-a.nav-linki
-{
+a.nav-link {
     position: relative;
 }
 a.nav-link:before {

@@ -1,9 +1,11 @@
-// Make the DIV element draggable:
-dragElement(document.getElementById("draggableDiv"));
+// grab list of draggable divs:
+var draggableElements = document.getElementsByClassName("card border-primary mb-3");
 
+for(var i = 0; i < draggableElements.length; i++){
+    dragElement(draggableElements[i]);
+}
 //function needed to drag div element
 function dragElement(elmnt) {
-    console.log("reaching here");
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {
     // if present, the header is where you move the DIV from:
@@ -43,3 +45,31 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
+$(document).ready(function(){
+    animateDiv('.card.border-primary.mb-3.1');
+    animateDiv('.card.border-primary.mb-3.2');
+    animateDiv('.card.border-primary.mb-3.3');
+    animateDiv('.card.border-primary.mb-3.4');
+});
+
+function makeNewPosition(){
+
+    // Get viewport dimensions (remove the dimension of the div)
+    var h = $(window).height() - 50;
+    var w = $(window).width() - 50;
+
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
+
+    return [nh,nw];
+
+}
+
+function animateDiv(myclass){
+
+    var newq = makeNewPosition();
+    $(myclass).animate({ top: newq[0], left: newq[1] }, 15000,   function(){
+      animateDiv(myclass);
+    });
+
+};
